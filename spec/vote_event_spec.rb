@@ -20,7 +20,7 @@ describe CLVoteScrapper, "#get" do
     end
     it "it is a pupa processor" do
       scrapper = CLVoteScrapper.new
-      expect(scrapper).to be_an_instance_of(Pupa::Processor)
+      expect(scrapper).to be_a(Pupa::Processor)
     end
   end
 end
