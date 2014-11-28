@@ -1,16 +1,12 @@
 require './lib/scrapper'
 require 'pupa'
+require 'nokogiri'
 
 
 describe CLVoteScrapper, "#get" do
 
   before(:all) do
-    $raw_info = ""
-    File.open("./spec/8575.xml", "r") do |infile|
-      while (line = infile.gets)
-        $raw_info += line
-      end
-    end
+    $raw_info = Nokogiri.XML(File.open("./spec/8575.xml", 'rb'))
   end
   context "Vote Events" do
     it "selects vote events" do
