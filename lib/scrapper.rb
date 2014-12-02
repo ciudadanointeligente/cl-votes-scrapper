@@ -2,9 +2,11 @@ require 'pupa'
 
 class CLVoteScrapper < Pupa::Processor
   attr_accessor :vote_events
+  attr_accessor :motion
 
-  def initialize(*args)
+  def initialize(motion ,*args)
     self.vote_events = []
+    self.motion = motion[:motion]
   end
 
   def read xml
