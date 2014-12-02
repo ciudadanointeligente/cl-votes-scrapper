@@ -1,4 +1,5 @@
 require 'pupa'
+require './lib/models/vote_event'
 
 class CLVoteScrapper < Pupa::Processor
   attr_accessor :vote_events
@@ -11,8 +12,8 @@ class CLVoteScrapper < Pupa::Processor
 
   def read xml
     xml.xpath("votaciones/votacion").each do |event|
-      vote_event = Pupa::VoteEvent.new
-      vote_event.identifier = event.xpath('SESION/text()')
+      vote_event = Votacion.new
+      # vote_event.identifier = event.xpath('SESION/text()')
       # 
       vote_event.motion_id = motion._id
       self.vote_events << vote_event

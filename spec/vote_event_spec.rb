@@ -34,5 +34,7 @@ describe CLVoteScrapper, "#get" do
       vote_event = scrapper.vote_events[0]
       expect(vote_event.motion_id).to eq($motion._id)
     end
+    # it "collects the information" do
+    # end
   end
 end
