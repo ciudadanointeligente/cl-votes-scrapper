@@ -28,10 +28,11 @@ describe CLVoteScrapper, "#get" do
       scrapper.read($raw_info)
       expect(scrapper.vote_events[0]).to be_a(Pupa::VoteEvent)
     end
-    # it "collects the right information about the event" do
-    #   scrapper = CLVoteScrapper.new
-    #   scrapper.read($raw_info)
-    #   vote_event = scrapper.vote_event[0]
-    # end
+    it "collects the right information about the motion id" do
+      scrapper = CLVoteScrapper.new motion:$motion
+      scrapper.read($raw_info)
+      vote_event = scrapper.vote_events[0]
+      expect(vote_event.motion_id).to eq($motion._id)
+    end
   end
 end

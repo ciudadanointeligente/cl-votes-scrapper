@@ -13,6 +13,8 @@ class CLVoteScrapper < Pupa::Processor
     xml.xpath("votaciones/votacion").each do |event|
       vote_event = Pupa::VoteEvent.new
       vote_event.identifier = event.xpath('SESION/text()')
+      # 
+      vote_event.motion_id = motion._id
       self.vote_events << vote_event
     end
 
