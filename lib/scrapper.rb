@@ -17,6 +17,7 @@ class CLVoteScrapper < Pupa::Processor
       # vote_event.identifier = event.xpath('SESION/text()')
       # 
       vote_event.tema = HTMLEntities.new.decode event.xpath('TEMA/text()').to_s
+      vote_event.quorum = HTMLEntities.new.decode event.xpath('QUORUM/text()').to_s
       vote_event.created_at = Date.parse event.xpath('FECHA/text()').to_s
       vote_event.motion_id = motion._id
       self.vote_events << vote_event
