@@ -34,7 +34,11 @@ describe CLVoteScrapper, "#get" do
       vote_event = scrapper.vote_events[0]
       expect(vote_event.motion_id).to eq($motion._id)
     end
-    # it "collects the information" do
-    # end
+    it "collects extra information" do
+      scrapper = CLVoteScrapper.new motion:$motion
+      scrapper.read($raw_info)
+      vote_event = scrapper.vote_events[0]
+      expect(vote_event.tema).to eq("Rechazo letra a) Indicación N°62  , Partida 10 Ministerio de Justicia (Boletín N°8.575-05) Proyecto de Ley de Presupuestos.")
+    end
   end
 end
