@@ -9,7 +9,6 @@ describe Votacion , "#initialize" do
     it "is a kind of Pupa::Model" do
       votacion = Votacion.new 
       expect(votacion).to be_a Pupa::Model
-
     end
   end
 end
@@ -54,6 +53,18 @@ describe CLVoteScrapper, "#get" do
       expect(vote_event.tipo_votacion).to eq("Discusión única")
       expect(vote_event.sesion).to eq("73/360")
       expect(vote_event.etapa).to eq("Segundo trámite constitucional")
+    end
+    it "uses the information to dump data" do
+      scrapper = CLVoteScrapper.new motion:$motion
+      scrapper.read($raw_info)
+      vote_event = scrapper.vote_events[0]
+      hash = vote_event.to_h
+
+      expect(hash[:tema]).to eq("Rechazo letra a) Indicación N°62  , Partida 10 Ministerio de Justicia (Boletín N°8.575-05) Proyecto de Ley de Presupuestos.")
+      expect(hash[:quorum]).to eq("Mayoría simple")
+      expect(hash[:tipo_votacion]).to eq("Discusión única")
+      expect(hash[:sesion]).to eq("73/360")
+      expect(hash[:etapa]).to eq("Segundo trámite constitucional")
     end
   end
 end
