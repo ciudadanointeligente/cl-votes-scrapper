@@ -1,8 +1,18 @@
 require './lib/scrapper'
+require './lib/models/vote_event'
 require 'pupa'
 require 'nokogiri'
 
 
+describe Votacion , "#initialize" do
+  context "initialization" do
+    it "is a kind of Pupa::Model" do
+      votacion = Votacion.new 
+      expect(votacion).to be_a Pupa::Model
+
+    end
+  end
+end
 describe CLVoteScrapper, "#get" do
 
   before(:all) do
