@@ -1,4 +1,6 @@
 require 'pupa'
+require './lib/models/vote_event'
+require 'htmlentities'
 
 class CLVoteScrapper < Pupa::Processor
   attr_accessor :vote_events
@@ -11,9 +13,15 @@ class CLVoteScrapper < Pupa::Processor
 
   def read xml
     xml.xpath("votaciones/votacion").each do |event|
-      vote_event = Pupa::VoteEvent.new
-      vote_event.identifier = event.xpath('SESION/text()')
+      vote_event = Votacion.new
+      # vote_event.identifier = event.xpath('SESION/text()')
       # 
+      vote_event.tema = HTMLEntities.new.decode event.xpath('TEMA/text()').to_s
+      vote_event.quorum = HTMLEntities.new.decode event.xpath('QUORUM/text()').to_s
+      vote_event.created_at = Date.parse event.xpath('FECHA/text()').to_s
+      vote_event.tipo_votacion = HTMLEntities.new.decode event.xpath('TIPOVOTACION/text()').to_s
+      vote_event.sesion = HTMLEntities.new.decode event.xpath('SESION/text()').to_s
+      vote_event.etapa = HTMLEntities.new.decode event.xpath('ETAPA/text()').to_s
       vote_event.motion_id = motion._id
       self.vote_events << vote_event
     end
