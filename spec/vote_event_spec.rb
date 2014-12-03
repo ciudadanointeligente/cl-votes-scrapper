@@ -67,4 +67,32 @@ describe CLVoteScrapper, "#get" do
       expect(hash[:etapa]).to eq("Segundo trámite constitucional")
     end
   end
+  context "vote event count" do
+    before(:all) do
+      $raw_info = Nokogiri.XML(File.open("./spec/8575.xml", 'rb'))
+      $motion = Pupa::Motion.new(text: '8575-05')
+      $scrapper = CLVoteScrapper.new motion:$motion
+      $scrapper.read($raw_info)
+      $vote_event = $scrapper.vote_events[0]
+    end
+    it "has a count object" do
+      expect($vote_event.counts.length).to be 4
+    end
+    it "gets the options right" do
+      expect($vote_event.counts[0][:option]).to eq "SI"
+      expect($vote_event.counts[1][:option]).to eq "NO"
+      expect($vote_event.counts[2][:option]).to eq "PAREO"
+      expect($vote_event.counts[3][:option]).to eq "ABSTENCION"
+    end
+    it "gets the values right" do
+      # SI
+      expect($vote_event.counts[0][:value]).to eq 10
+      # NO
+      expect($vote_event.counts[1][:value]).to eq 13
+      # PAREO
+      expect($vote_event.counts[2][:value]).to eq 2
+      # ABSTENCION
+      expect($vote_event.counts[3][:value]).to eq 1
+    end
+  end
 end
