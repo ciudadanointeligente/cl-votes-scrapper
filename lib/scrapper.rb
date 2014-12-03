@@ -25,14 +25,14 @@ class CLVoteScrapper < Pupa::Processor
       #COUNTS 
       # vote_event.add_count()
       si = HTMLEntities.new.decode event.xpath('SI/text()')
-      no = HTMLEntities.new.decode event.xpath('SI/text()')
+      no = HTMLEntities.new.decode event.xpath('NO/text()')
       pareo = HTMLEntities.new.decode event.xpath('PAREO/text()')
       abstencion = HTMLEntities.new.decode event.xpath('ABSTENCION/text()')
 
-      vote_event.add_count("SI", 1)
-      vote_event.add_count("NO", 1)
-      vote_event.add_count("PAREO", 1)
-      vote_event.add_count("ABSTENCION", 1)
+      vote_event.add_count("SI", si.to_i)
+      vote_event.add_count("NO", no.to_i)
+      vote_event.add_count("PAREO", pareo.to_i)
+      vote_event.add_count("ABSTENCION", abstencion.to_i)
 
 
 

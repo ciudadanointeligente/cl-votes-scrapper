@@ -78,12 +78,21 @@ describe CLVoteScrapper, "#get" do
     it "has a count object" do
       expect($vote_event.counts.length).to be 4
     end
-    it "counts the right options" do
+    it "gets the options right" do
       expect($vote_event.counts[0][:option]).to eq "SI"
       expect($vote_event.counts[1][:option]).to eq "NO"
       expect($vote_event.counts[2][:option]).to eq "PAREO"
       expect($vote_event.counts[3][:option]).to eq "ABSTENCION"
     end
-
+    it "gets the values right" do
+      # SI
+      expect($vote_event.counts[0][:value]).to eq 10
+      # NO
+      expect($vote_event.counts[1][:value]).to eq 13
+      # PAREO
+      expect($vote_event.counts[2][:value]).to eq 2
+      # ABSTENCION
+      expect($vote_event.counts[3][:value]).to eq 1
+    end
   end
 end
