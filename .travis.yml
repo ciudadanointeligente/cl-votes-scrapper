@@ -4,4 +4,4 @@ script: bundle exec rspec
 services:
 	- mongodb
 before_script:
-- createdb pupa
+	- createdb pupa
