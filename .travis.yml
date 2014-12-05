@@ -2,6 +2,6 @@ language: ruby
 rvm: 2.1.2
 script: bundle exec rspec
 services:
-	- mongodb
+    - mongodb
 before_script:
-	- createdb pupa
+    - createdb pupa
