@@ -357,7 +357,12 @@
         }
       ],
       "identifiers": [],
-      "other_names": [],
+      "other_names": [{
+          "id": "5489c1315286ac290e6024ec",
+          "name": "Pizarro S., Jorge",
+          "note": "For voting"
+
+      }],
       "url": "http://pmocl.popit.mysociety.org/api/v0.1/persons/53303739d0c05d8b737b6ce6",
       "html_url": "http://pmocl.popit.mysociety.org/persons/53303739d0c05d8b737b6ce6",
       "image": "http://www.senado.cl/appsenado/index.php?mo=senadores&ac=getFoto&id=163&tipo=1"

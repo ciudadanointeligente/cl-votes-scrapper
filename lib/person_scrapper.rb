@@ -10,6 +10,9 @@ class PersonScraper < Pupa::Processor
 			person = Pupa::Person.new
 			person.name = person_h['name']
 			person.add_identifier(person_h['id'])
+			person_h['other_names'].each do |other_name|
+				person.add_name(other_name['name'], note:other_name['note'])	
+			end
 			dispatch(person)
 		end
 
