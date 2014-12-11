@@ -34,6 +34,10 @@ describe PersonScraper , "The person Scrapper" do
       runner = Pupa::Runner.new(PersonScraper)
       runner.run([])
       connection.find(_type: 'pupa/person', name: 'Jorge Pizarro Soto').should be_a(Hash)
+      result = connection.find(_type: 'pupa/person', name: 'Jorge Pizarro Soto')
+      
+      expect(result["name"]).to eq("Jorge Pizarro Soto")
+      
 
   	end
   end
