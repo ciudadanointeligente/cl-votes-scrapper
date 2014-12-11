@@ -9,6 +9,7 @@ class PersonScraper < Pupa::Processor
 		json_response['result'].each do |person_h|
 			person = Pupa::Person.new
 			person.name = person_h['name']
+			person.add_identifier(person_h['id'])
 			dispatch(person)
 		end
 

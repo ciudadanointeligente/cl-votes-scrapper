@@ -37,6 +37,7 @@ describe PersonScraper , "The person Scrapper" do
       result = connection.find(_type: 'pupa/person', name: 'Jorge Pizarro Soto')
       
       expect(result["name"]).to eq("Jorge Pizarro Soto")
+      expect(result["identifiers"]).to include({"identifier"=>"53303739d0c05d8b737b6ce6"})
       
 
   	end
