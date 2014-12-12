@@ -22,7 +22,7 @@ describe PersonScraper , "The person Scrapper" do
   		$file = File.read('./spec/congressmen.json')
       $file2 = File.read('./spec/congressmen2.json')
   		$persons_json = JSON.parse($file)
-  		$scrapper = PersonScraper.new "results"
+  		$scrapper = PersonScraper.new("results", popit_url: "http://pmocl.popit.mysociety.org/api/v0.1/persons")
       PersonScraper.add_scraping_task(:people)
     end
     before :each do
