@@ -3,9 +3,16 @@ require 'open-uri'
 require 'json'
 
 class PersonScraper < Pupa::Processor
+	def initialize(*args, **opts)
+		@popit_url = opts[:popit_url]
+		opts.delete(:popit_url)
+		puts @popit_url
+		super(*args, **opts)
+	end
 	def scrape_people
 		
 		keep_fetching = true
+		
 		url = 'http://pmocl.popit.mysociety.org/api/v0.1/persons'
 		while keep_fetching do
 
